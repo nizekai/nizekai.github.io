@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC
+"-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>3^N</title>
+	<meta http-equiv = 'content-type' content = 'text/html; charset = utf-8 ' />
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="400">  
+	<meta name="viewport" content="width=600, target-densitydpi=400dpi, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+	<link type = 'text/css' rel="stylesheet" href = 'body.css' />
+	<script src="storage.js"></script>
+	<script src="actuator.js"></script>
+	<script src="gameController.js"></script>
+	<script src="Grid.js"></script>
+	<script src="gameRules.js"></script>
+	<script src="InputManager.js"></script>
+	<script src="animframe.js"></script>
+	<script src="load.js"></script>
+	
+</head>
+<body>
+	<div class = "container" >
+		<div class = "heading" >
+			<div class = "icon" >
+				<img class = "icon-img" src = "img/3N.png"/>
+			</div>
+			<div class = "score"  id = "scoreContainer">
+				<div class = "score-text" id = "score" ></div>
+				
+			</div>
+			<div class = "next" id = "nextContainer" >
+				<div class = "next-text" id = "next"></div>
+			</div>
+			<div class = "temp" id = "tempContainer" >
+				<div class = "temp-text" id = "temp"></div>	
+			</div>
+
+		</div>
+		<div class = "grid"  id="grid">
+	
+		</div>
+		<div class = "ps">
+		<br>
+		<strong>HOW TO PLAY:</strong> try it yourself @_@ <br><hr/>
+		1.1 by <strong>KearZ</strong> celebrate <strong>the 3st love anniversary </strong>with <strong>Loki</strong><br> UI by <strong>XiaoHong</strong>  <br>
+		
+		
+		</div>
+		
+	</div>
+	<div class = "go" id = "go">
+	<div class = "mask "></div>
+	<div class = "gomessage" id = "gomessage" >
+		<div  class = "go-text" id = "go-text">你输啦\\ （`//▽//`）//<br>
+			<br>BEST-SCORE:<strong><span id = "go-best-score" style = "float:right" ></span></strong><br>
+			<br>SCORE:<strong><span id = "go-score" style = "float:right">00</span></strong>
+		
+		</div>
+		<div class = "restart">
+		</div>
+	</div>
+	</div>
+</body>
+
+
+
+</html>

@@ -1,0 +1,348 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	background: #faf8ef;
+	color: #776e65;
+	font-family:  Arial, sans-serif;
+	font-size: 18px; }
+
+body{
+	margin: 30px 0;
+	
+}
+
+div{
+	display: block;
+}
+.container {
+	width: 500px;
+	margin: 0 auto; 
+	-webkit-animation: appear 300ms ease-in;
+    -moz-animation: appear 300ms ease-in;
+    animation: appear 300ms ease-in;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    animation-fill-mode: both;
+	-webkit-touch-callout: none;
+	-ms-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.icon{
+	width:250px;
+	height:200px;
+	float:left;
+	
+}
+	.icon-img{
+		width:160px;
+		height:160px;
+		float:left;
+		margin:20px ;
+	}
+	
+@-webkit-keyframes appear {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+    -moz-transform: scale(0.4);
+    transform: scale(0.4); }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1); } }
+@-moz-keyframes appear {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+    -moz-transform: scale(0.4);
+    transform: scale(0.4); }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1); } }
+@keyframes appear {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+    -moz-transform: scale(0.4);
+    transform: scale(0.4); }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1); } }
+
+.heading {
+	color: white;
+	width:500px;
+	margin:0;
+	padding:0;
+}
+
+.score {
+	width: 250px;
+	float: right;
+	background-image:url(img/Score_background.png);
+	background-size:contain;
+	text-shadow:2px 2px 2px #0696cc;
+	}
+	.score-text {
+		margin-left: 10px;
+		width:240px;
+		font: 45px "Comic Sans MS";
+		color: white;
+		line-height:74px;
+		text-align: center;
+		z-index:1;
+		
+	}
+	.score-add {
+		position:absolute;
+		line-height:70px;
+		right:10px;
+		top:5px;
+		font-size:25px;
+		-webkit-animation: add 600ms ease-in;
+		-moz-animation: add 600ms ease-in;
+		animation: add 600ms ease-in;
+		-webkit-animation-fill-mode: both;
+		-moz-animation-fill-mode: both;
+		animation-fill-mode: both;
+		z-index: 50;
+	}
+@keyframes add{
+	0%{
+		opacity: 1;
+		right:0px;
+	}
+	100% {
+		opacity: 0;
+		right:60px;
+	}
+}	
+@-webkit-keyframes add{
+	0%{
+		opacity: 1;
+		right:10px;
+	}
+	100% {
+		opacity: 0;
+		right:60px;
+	}
+}	
+@-moz-keyframes add{
+	0%{
+		opacity: 1;
+		right:10px;
+	}
+	100% {
+		opacity: 0;
+		right:60px;
+	}
+}	
+
+.temp{
+	background-image: url(img/Temp_background.png);
+	background-size:cover;
+	margin-right:30px;
+}
+.next{
+	background-image: url(img/Next_background.png);
+	background-size:cover;
+}
+.temp , .next{
+	width: 109px;
+	height: 99px;
+	float: right;
+	margin-top:20px;
+	color:White;
+	}
+	.temp-text , .next-text{
+		
+		font: bold  arial;
+		width: 109px;
+		height: 80px;
+		line-height: 80px;
+		text-align: center;
+		-webkit-animation: appear 200ms ease-in;
+		-moz-animation: appear 200ms ease-in;
+		animation: appear 200ms ease-in;
+		-webkit-animation-fill-mode: both;
+		-moz-animation-fill-mode: both;
+		animation-fill-mode: both;
+		}
+	.next-text{
+		margin-top:20px;
+		text-shadow:2px 1px 1px #653780;
+	}
+	.temp-text{
+		margin-top:0px;
+		text-shadow:2px 1px 1px #f69f4c;
+	}
+@keyframes appear{
+	0%{	opacity: 0.8;
+		-webkit-transform: scale(0);
+		-moz-transform: scale(0);
+		transform: scale(0);
+		top:-50px;
+		}
+	100% {opacity: 1;
+		top: 0px;}}	
+@-webkit-keyframes appear{
+	0%{	opacity: 0.8;
+		-webkit-transform: scale(0);
+		-moz-transform: scale(0);
+		transform: scale(0);
+		top:-50px;
+		}
+	100% {opacity: 1;
+		top: 0px;}}	
+@-moz-keyframes appear{
+	0%{	opacity: 0.0;
+		-webkit-transform: scale(0);
+		-moz-transform: scale(0);
+		transform: scale(0);
+		top:-50px;
+		}
+	100% {opacity: 1;
+		top: 0px;}}	
+		
+@keyframes flash{
+	0%{	opacity: 0.8;
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		transform: scale(1);
+		}
+	50%{
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+		transform: scale(1.1);
+		}
+	100% {opacity: 1;
+		-webkit-transform: scale(1.0);
+		-moz-transform: scale(1.0);
+		transform: scale(1.0);
+		}}	
+@-webkit-keyframes flash{
+			0%{	opacity: 0.8;
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		transform: scale(1);
+		}
+	50%{
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+		transform: scale(1.1);
+		}
+	100% {opacity: 1;
+		-webkit-transform: scale(1.0);
+		-moz-transform: scale(1.0);
+		transform: scale(1.0);
+		}}	
+@-moz-keyframes flash{
+			0%{	opacity: 0.8;
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		transform: scale(1);
+		}
+	50%{
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+		transform: scale(1.1);
+		}
+	100% {opacity: 1;
+		-webkit-transform: scale(1.0);
+		-moz-transform: scale(1.0);
+		transform: scale(1.0);
+		}}	
+.heading:after {
+	height: 50px; 
+	content: "";
+	display: block;
+	clear: both;
+}  
+
+
+.grid {
+
+	background: #fff799;
+	width: 500px ;
+	height: 500px ;
+    padding:5px;
+}
+
+.cell {
+	background: #ffffff;
+	border-radius: 6px;
+	margin: 2px 2px;
+	float: left;
+	text-align: center;
+
+   }
+	.cell-appear {
+		-webkit-animation: appear 200ms ease-in;
+		-moz-animation: appear 200ms ease-in;
+		animation: appear 200ms ease-in;
+		-webkit-animation-fill-mode: both;
+		-moz-animation-fill-mode: both;
+		animation-fill-mode: both;
+	}
+	.cell-flash{
+		-webkit-animation: flash 200ms ease-in;
+		-moz-animation: flash 200ms ease-in;
+		animation: flash 200ms ease-in;
+		-webkit-animation-fill-mode: both;
+		-moz-animation-fill-mode: both;
+		animation-fill-mode: both;		
+	}
+	
+.ps {
+	margin-top:20px;
+}
+.go{
+display:none;}
+.mask {
+	position:absolute;
+	background:black;
+	top:0px;
+	left:0px;
+	z-index:100;
+	width:100%;
+	height:100%;
+	filter:alpha(opacity=50);
+	opacity:0.50;
+}
+.gomessage{
+	background-image:url(img/gameover.png);
+	background-size:contain;
+	width:600px;
+	height:400px;
+	z-index:110;
+	position:absolute;
+	top:20px;
+}
+.go-text{
+	float:right;
+	width:250px;
+	margin-top:200px;
+	margin-right:150px;
+	
+}
+.restart{
+	background-image:url(img/restart.png);
+	background-size:contain;
+	width:150px;
+	height:38px;
+	float:right;
+	margin-right:200px;
+	margin-top:30px
+}
