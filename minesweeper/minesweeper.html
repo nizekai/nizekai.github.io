@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>MineSweeper</title>
+        <link rel=StyleSheet href="cell.css" type="text/css">
+        <script src="minesweeper.js"></script>
+        <script src="init.js"></script>
+    </head>
+
+    <body>
+    <h2 >MineSweeper </h2>
+        <div align = "center" >
+            
+            <div>
+
+			   <div id ="bar">
+				<div id = "info">
+					<div id ="timerLabel" style="display:inline;"></div>
+					
+					<div id ="flagsLabel" style="display:inline"></div>
+				</div>
+				
+			   </div>
+			   <div id = "bt">
+					<div id = "FL" onclick="setFlagStatus(!FLAG)">FLAG</div>
+					<div id = "RS" onclick="startNewGame(0)">RESTART</div>
+					<div id = "SC" style="display:inline">SCORE</div>
+				</div>
+			   <div>
+					
+					
+			   </div>
+               
+            </div>
+<div id ="msg" style = "display:table;border:1px coral solid;padding:10px"></div>
+            <br>
+            <div id = "board"> </div>
+            <div id = "pauseScreen"> </div>
+            <div id = "scoreBoard"> </div>
+            <br>
+
+
+        </div>
+
+
+    </body>
+
+</html>
