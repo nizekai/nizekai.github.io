@@ -124,10 +124,10 @@ function startNewGame(type){
         drawOldBoard();
     }else{
         if (type == 0){
-            bombsNum = 16; rows = 9; cols = 9;run = true;
+            bombsNum = 14; rows = 9; cols = 9;run = true;
         }else{
             //default
-            bombsNum = 16; rows = 9; cols = 9;run = true;
+            bombsNum = 14; rows = 9; cols = 9;run = true;
             //in case type was equal to -1 (first run) but no game was stored
             gameType = 0;
         }
@@ -423,6 +423,8 @@ function newscore(){
 function showScoreBoard(uname){
     var scoreBoard = document.getElementById("scoreBoard");
     var board = document.getElementById("board");
+	var index=null;
+	var scorei=null;
 	$.ajax({
 		url:"http://nizekai.sinaapp.com/minesweeperscore/getscore",
 		async : false, 
@@ -435,25 +437,28 @@ function showScoreBoard(uname){
 	scoreBoardTable="<table id = 'scoretable'><tr style=\"font-size:20px;font-weight:bold;line-height:30px\"><td>名字</td><td>分数</td><td>排名</td></tr>"
 	scoreTable="";
 	n_f=false;
-	for(var i=0;i<20;i++){
+	for(var i=0;i<15;i++){
 		name = data[i]?data[i]["name"]:"-";
 		score=data[i]?data[i]["score"].substr(3,5):"-"
 		l=data[i]?i+1:"-";
 		adt="";
-		if(uname && uname==name) {adt=" style='color:red' ";n_f=true;}
-		scoreTable+="<tr"+adt+"><td>"+name+"</td><td>"+score+"</td><td>"+l+"</td><tr>";
+		if(uname && uname==decodeURI(name.toLowerCase ())) {adt=" style='color:red' ";n_f=true;index=l;scorei=score;}
+		scoreTable+="<tr"+adt+"><td>"+decodeURI(name)+"</td><td>"+score+"</td><td>"+l+"</td><tr>";
 	}
 	if(!n_f){
-		var find=19;
-		while(uname && data[++find] && data[find].name!=uname){}
-		if(data[find] && find>19) {
-			scoreBoardTable+="<tr style='color:red'><td>"+data[find].name+"</td>"+"<td>"+data[find].score.substr(3,5)+"</td>"+"<td>"+(++find)+"</td><tr>";
-			score=data[find].score.substr(3,5);
-			l=find;
+		var find=14;
+		while(uname && data[++find] && decodeURI(data[find].name.toLowerCase ())!=uname){}
+		if(data[find] && find>15) {
+			scoreBoardTable+="<tr style='color:red'><td>"+decodeURI(data[find].name)+"</td>"+"<td>"+data[find].score.substr(3,5)+"</td>"+"<td>"+(++find)+"</td><tr>";
+			scorei=data[find].score.substr(3,5);
+			index=find;
 		}
 	}
 	scoreBoardTable+=scoreTable+"</talbe>";
-
+	if(scorei!=null && index!=null){
+		var str="我用了" + scorei+"扫完所有雷，排名"+index+",不服来战！";
+		sendMessage(str);
+	}
     if (!game){
         scoreBoard.innerHTML = scoreBoardTable;
 		
