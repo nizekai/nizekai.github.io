@@ -138,6 +138,9 @@ a{
 	color:#fb2a2a;
 	font-weight:bold;
 }
+#help{
+	color:#7c7259;
+}
 @media only screen and (max-width:320px) { 
 #FL,#SC,#RS{
 	background-color:#ADADAD;
@@ -186,6 +189,9 @@ a{
 #bar{
 	font-size:18px;
 
+}
+#help{
+	color:#7c7259;
 }
 #imgtime{
 	height:20px;

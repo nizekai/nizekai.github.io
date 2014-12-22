@@ -7,8 +7,8 @@
         var opened = window.open('about:blank', '_self');
         opened.opener = null;
         opened.close();
-    }
-	*/
+    }*/
+	
 document.addEventListener('DOMContentLoaded', function () {
   startNewGame(0);
   document.documentElement.addEventListener('dblclick', function(e){

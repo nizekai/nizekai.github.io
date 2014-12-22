@@ -5,6 +5,7 @@ var tit = "一起来玩扫雷~"; //简介
 var link = window.location.href; //链接
 
 function sendMessage(title){
+	if(typeof(WeixinJSBridge)=="undefined")return;
 	title=title?title:tit;
    WeixinJSBridge.on('menu:share:timeline', function(argv){
       WeixinJSBridge.invoke('shareTimeline',{ 

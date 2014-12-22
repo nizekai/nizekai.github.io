@@ -124,7 +124,7 @@ function startNewGame(type){
         drawOldBoard();
     }else{
         if (type == 0){
-            bombsNum = 14; rows = 9; cols = 9;run = true;
+            bombsNum = 15; rows = 9; cols = 9;run = true;
         }else{
             //default
             bombsNum = 14; rows = 9; cols = 9;run = true;
@@ -141,6 +141,7 @@ function startNewGame(type){
     G("timerLabel").innerHTML = "Time:  " + formatTime(time);
     G("flagsLabel").innerHTML = "Flags: "  + flaged +  "/" + bombsNum;
 	G("scoreBoard").style.display="none";
+	G("help").style.display= "block";
     setRun(run);
     //generate the score board
     //in case the user wants to see his previous scores before playing any game
@@ -442,12 +443,12 @@ function showScoreBoard(uname){
 		score=data[i]?data[i]["score"].substr(3,5):"-"
 		l=data[i]?i+1:"-";
 		adt="";
-		if(uname && uname==decodeURI(name.toLowerCase ())) {adt=" style='color:red' ";n_f=true;index=l;scorei=score;}
+		if(uname && (uname==decodeURI(name) || uname==decodeURI(name.toLowerCase()))) {adt=" style='color:red' ";n_f=true;index=l;scorei=score;}
 		scoreTable+="<tr"+adt+"><td>"+decodeURI(name)+"</td><td>"+score+"</td><td>"+l+"</td><tr>";
 	}
 	if(!n_f){
 		var find=14;
-		while(uname && data[++find] && decodeURI(data[find].name.toLowerCase ())!=uname){}
+		while(uname && data[++find] && (uname!=decodeURI(name) || decodeURI(data[find].name.toLowerCase())!=uname)){}
 		if(data[find] && find>15) {
 			scoreBoardTable+="<tr style='color:red'><td>"+decodeURI(data[find].name)+"</td>"+"<td>"+data[find].score.substr(3,5)+"</td>"+"<td>"+(++find)+"</td><tr>";
 			scorei=data[find].score.substr(3,5);
@@ -463,7 +464,7 @@ function showScoreBoard(uname){
         scoreBoard.innerHTML = scoreBoardTable;
 		
         scoreBoard.style.display = "block";
-        board.style.display = "none";
+        board.style.display = G("help").style.display= "none";
 		hideMessage();
         return;
     }
@@ -472,7 +473,7 @@ function showScoreBoard(uname){
 
     scoreBoard.innerHTML = scoreBoardTable;
     scoreBoard.style.display = "block";
-    board.style.display = "none";
+    board.style.display = G("help").style.display= "none";
 	hideMessage();
 }
 
@@ -485,7 +486,7 @@ function setRun(value){
     run = value;
     if (value){
         timerId = setInterval(timer ,1000);
-        board.style.display = "block";
+        board.style.display = G("help").style.display="block";
         scoreBoard.style.display = "none";
         hideMessage();
     }else{
