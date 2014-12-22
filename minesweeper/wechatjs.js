@@ -6,7 +6,7 @@ var link = window.location.href; //链接
 
 function sendMessage(title){
 	if(typeof(WeixinJSBridge)=="undefined")return;
-	title=title?title:tit;
+	var title=title|| tit;
    WeixinJSBridge.on('menu:share:timeline', function(argv){
       WeixinJSBridge.invoke('shareTimeline',{ 
 				"appid":"",                                              //appid 设置空就好了。
@@ -37,6 +37,6 @@ function sendMessage(title){
 if(document.addEventListener){
 	document.addEventListener('WeixinJSBridgeReady', sendMessage, false);  
 }else if(document.attachEvent){
-	document.attachEvent('WeixinJSBridgeReady'   , sendMessage);	
-	document.attachEvent('onWeixinJSBridgeReady' , sendMessage);  
+	document.attachEvent('WeixinJSBridgeReady'   , function(){sendMessage()});	
+	document.attachEvent('onWeixinJSBridgeReady' , function(){sendMessage()});  
 }
