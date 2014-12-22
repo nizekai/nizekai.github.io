@@ -2,23 +2,30 @@
     <head>
         <title>MineSweeper</title>
         <link rel=StyleSheet href="cell.css" type="text/css">
+		<script src="wechatjs.js"></script>
+		<script src="jquery-2.1.3.js"></script>
         <script src="minesweeper.js"></script>
         <script src="init.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=1.0, user-scalable=yes" />     
+		
+		
+		
+		<meta name="viewport" content="width=390, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />     
 		<meta name="apple-mobile-web-app-capable" content="yes" />    
 		<meta name="format-detection" content="telephone=no" /> 
+		<meta charset="utf-8" />
     </head>
 
     <body>
-    <h2 >MineSweeper </h2>
-        <div align = "center" >
+    <div id="atitle">MineSweeper</div>
+        <div align = "center" id = "gameArea">
             
             <div>
 
 			   <div id ="bar">
 				<div id = "info">
+					<img src = "images/time.png" id = "imgtime" />
 					<div id ="timerLabel" style="display:inline;"></div>
-					
+					<img src = "images/flag.png" id = "imgfl" />
 					<div id ="flagsLabel" style="display:inline"></div>
 				</div>
 				
@@ -26,7 +33,7 @@
 			   <div id = "bt">
 					<div id = "FL" onclick="setFlagStatus(!FLAG)">FLAG</div>
 					<div id = "RS" onclick="startNewGame(0)">RESTART</div>
-					<div id = "SC" style="display:inline">SCORE</div>
+					<div id = "SC" onclick="showScoreBoard()">SCORE</div>
 				</div>
 			   <div>
 					
@@ -34,17 +41,24 @@
 			   </div>
                
             </div>
-<div id ="msg" style = "display:table;border:1px coral solid;padding:10px"></div>
             <br>
             <div id = "board"> </div>
-            <div id = "pauseScreen"> </div>
-            <div id = "scoreBoard"> </div>
+
             <br>
 
 
         </div>
-
-
+		
+		<div class = "mask" id = "mask">
+			
+		</div>
+		<div align = "center" id = "gamemessage">
+			<div id = "winorlose"></div>
+			<div id = "tick"></div>
+		</div>
+		<div align="center" id = "scoreBoard">
+			暂未开放啦啦啦
+		<div>
     </body>
 
 </html>

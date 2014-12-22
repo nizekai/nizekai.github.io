@@ -1,21 +1,30 @@
 #bar{
 	
 	font-size:20px;
-	background-color:#84C1FF;
+
 	
 	max-width:400px;
 
 }
 #info{
-	line-height:30px;
-	color:white;
+	vertical-align:middle;
 }
-
+#imgtime{
+	height:22px;
+	width:22px;
+	vertical-align:middle;
+}
+#imgfl{
+	height:25px;
+	width:25px;
+	vertical-align:middle;
+	margin-left:30px;
+}
 #FL,#SC,#RS{
 	background-color:#ADADAD;
 	font-size:18px;
-	margin:0px 15px;
-	padding:7px;
+	margin:0px 29px;
+	padding:4px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -40,12 +49,15 @@ body{
   -ms-touch-action: none;
   touch-action: none;
 }
-#timerLabel,#flagsLabel{
-	margin:0px 25px;
+#timerLabel{
+	margin-right:30px;
+}
+#flagsLabel{
+	
 }
 .cell_closed {
     float:left;
-    background-color:#53FF53;
+    background-color:#1C86EE;
     background-size: 100%;
     width:35px;
     height:35px;
@@ -55,7 +67,7 @@ body{
 }
 .cell_opened{
     float:left;
-    background-color:#CEFFCE;
+    background-color:#F0F0F0;
     background-size: 100%;
     width:35px;
     height:35px;
@@ -63,7 +75,65 @@ body{
     margin-left:0px;
     margin-bottom:0px;
 }
-h2{
-	font-size:50px;
+#atitle{
+	font-size:52px;
 	margin:10px;
+	font-weight:bold;
+}
+.mask {
+	position:absolute;
+	background:black;
+	top:0px;
+	left:0px;
+	z-index:100;
+	width:100%;
+	height:100%;
+	filter:alpha(opacity=50);
+	opacity:0.50;
+	display:none;
+}
+#gamemessage{
+	z-index:101;
+	position:absolute;
+	background:#1cb6ef;
+	vertical-align:middle;
+	top:35%;
+	width:100%;
+	height:30%;
+	left:0px;
+	filter:alpha(opacity=80);
+	opacity:0.80;
+	vertical-align:middle;
+	font-size:30px;
+	display:none;
+	
+}
+#winorlose{
+	margin:8px 0;
+
+}
+#scoretable{
+	border:1;
+	width:90%;
+	max-width:300px;
+	text-align:center;
+	background-color:#FAFAD2;
+		border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	font-size:14px;
+	padding:5px;
+}
+#tick{
+	font-size:18px;
+	margin:30px 0;
+	line-height:25px;
+}
+#scoreBoard{
+	font-size:18px;
+	display:none;
+}
+a{
+	color:#fb2a2a;
+	font-weight:bold;
 }

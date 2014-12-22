@@ -36,6 +36,7 @@ cellsView = null;
 
 //current game type
 currentType = 0;
+data=undefined;
 
 function timer(){
     time++;
@@ -56,7 +57,11 @@ function formatTime(time){
     var secs = time%60;
     return (mins > 9 ? mins: "0" + mins) + ":" + (secs > 9 ? secs: "0" + secs);
 }
-
+function scoreTime(time){
+	var mins = Math.floor(time/60);
+    var secs = time%60;
+    return (mins > 9 ? mins: "0" + mins) + (secs > 9 ? secs: "0" + secs);
+}
 //sets the inner text value of a cell using the
 //appropriate image
 function setCellText(cell,value){
@@ -66,6 +71,7 @@ function setCellText(cell,value){
 
 function setFlaged(cell){
     cell.style.backgroundImage = "url(images/flag.png)";
+	cell.style.backgroundRepeat ="round";
 }
 
 function loadGame(){
@@ -110,7 +116,6 @@ function startNewGame(type){
     clearInterval(timerId);
     gameType = type;
     //hide the scoreBoard if it was visible
-    document.getElementById("scoreBoard").style.display = "none";
     //hide the message div if it was visible
     hideMessage();
     if (type == -1 && localStorage["lastgame"] != undefined && localStorage["lastgame"] != ""){
@@ -119,10 +124,10 @@ function startNewGame(type){
         drawOldBoard();
     }else{
         if (type == 0){
-            bombsNum = 12; rows = 9; cols = 9;
+            bombsNum = 16; rows = 9; cols = 9;run = true;
         }else{
             //default
-            bombsNum = 10; rows = 8; cols = 8;
+            bombsNum = 16; rows = 9; cols = 9;run = true;
             //in case type was equal to -1 (first run) but no game was stored
             gameType = 0;
         }
@@ -130,17 +135,16 @@ function startNewGame(type){
     }
     //set the board to visible
     document.getElementById("board").style.display = "block";
-    document.getElementById("pauseScreen").style.display = "none";
     //default pause button
 
 
-    document.getElementById("timerLabel").innerHTML = "Time:  " + formatTime(time);
-    document.getElementById("flagsLabel").innerHTML = "Flags: "  + flaged +  "/" + bombsNum;
-
+    G("timerLabel").innerHTML = "Time:  " + formatTime(time);
+    G("flagsLabel").innerHTML = "Flags: "  + flaged +  "/" + bombsNum;
+	G("scoreBoard").style.display="none";
     setRun(run);
     //generate the score board
     //in case the user wants to see his previous scores before playing any game
-    generateScoreBoard("");
+
 }
 
 
@@ -203,6 +207,7 @@ function drawNewBoard(){
     for (var i = 0;i < rows;i++){
         for (var j = 0;j< cols;j++){
             document.getElementById(i + "-" + j).addEventListener('click', clickfun(i, j));
+
             document.getElementById(i + "-" + j).addEventListener('contextmenu', clickfun(i ,j));
         }
     }
@@ -283,6 +288,8 @@ function showBombs(){
                 if (cellsData[i][j] == BOMB){
                     //show a bomb image
                     cell.style.backgroundImage = "url(images/mine.png)";
+					cell.style.backgroundRepeat ="no-repeat";
+	
                 }else{
                     //show the cell number
                     cell.className = "cell_opened";
@@ -292,6 +299,8 @@ function showBombs(){
                 //found a wrong flag
                 if (cellsData[i][j] != BOMB)
                     cell.style.backgroundImage = "url(images/flag2.png)";
+					cell.style.backgroundRepeat ="no-repeat";
+
             }
         }
     }
@@ -350,7 +359,7 @@ function lostAction(){
     run = false;
     game = false;
     showBombs();
-    setTimeout(function() {finishGame(false)}, 500);
+    setTimeout(function() {finishGame(false)}, 200);
 
 }
 
@@ -359,88 +368,98 @@ function winAction(){
     run = false;
     game = false;
     showBombs();
-    setTimeout(function() {finishGame(true)}, 500);
+    setTimeout(function() {finishGame(true)}, 200);
 	
 }
 
 function finishGame(win){
     var lastAddedScore = "";
-    var msg = "";
+    var msg = null;
     var action = undefined;
 
     if (win){
-        msg  = "<p style ='align:center'> <b>Bravo!</b></p>";
-        showMessage(msg);
+        msg = {	status:"WIN",
+				text:"过了？小CASE啦~~咱来<a onclick=\"newscore()\">比比分</a><br/>名字<input type='text' id=\"name\"></input>"};
 
-        action = function() {
-            showScoreBoard();
-            hideMessage();
-        };
+        
 
     }else{
-        msg = "Sorry <br/> Better luck next time";
+        msg = {	status:"LOSE",
+				text:"胜败乃兵家常事，大侠请<a onclick=\"startNewGame(0) \">重新来过</a>"};
     }
-
-    startNewGameAction = function () {
-        startNewGame(currentType);
-        hideMessage();
-    };
 
 
     showMessage(msg);
 
 
-    generateScoreBoard(lastAddedScore);
+
 }
 
 function hideMessage(){
-    var msgDiv = document.getElementById("msg");
-    msgDiv.style.display = "none";
-}
+   G("mask").style.display = G("gamemessage").style.display  = "none";
+  }
 
 //popup alert replacement
 function showMessage(msg){
-    var msgDiv = document.getElementById("msg");
-    msgDiv.style.display = "table";
-    msgDiv.innerHTML = msg;
-}
-
-//generate the score Board
-function generateScoreBoard(lastAddedScore){
-
-    var tbl = "<table > <th style = 'background-color:#c3d9ff;'> Small </th>";
-    tbl +=  "<th style = 'background-color:#c3d9ff;'> Medium </th>";
-    tbl += "<th style = 'background-color:#c3d9ff;'> Large </th> ";
-
-    for (var i=0;i<10;i++){
-        tbl += "<tr>";
-        for (var j=0;j<3;j++){
-            if (localStorage["score" + j + "" + i] == null || localStorage["score" + j + "" + i] == "undefined")
-                tbl += "<td align = 'center'> - </td>";
-            else{
-                if (lastAddedScore == "score" + j + "" + i)
-                    tbl += "<td style = 'background-color:#fbcc67' align = 'center'> " + formatTime(localStorage["score" + j + "" + i]) + " </td>";
-                else
-                    tbl += "<td align = 'center'> " + formatTime(localStorage["score" + j + "" + i]) + " </td>";
-            }
-        }
-        tbl += "</tr>";
-    }
-    tbl += "</table>";
-    scoreBoardTable = tbl;
+    G("mask").style.display = G("gamemessage").style.display = "block";
+	G("winorlose").innerHTML = "YOU " + msg.status;
+	G("tick").innerHTML = msg.text;
+	
 }
 
 
+function newscore(){
+	if(G("name").value!=""){
+		$.ajax({
+		url:"http://nizekai.sinaapp.com/minesweeperscore/setscore/"+G("name").value+"/"+scoreTime(time),
+		async : false, 
+		success: alert("上传成功")	
+	});
+	}
+	showScoreBoard(G("name").value);
+}
 //show the score Board
 //will pause the game
-function showScoreBoard(){
+function showScoreBoard(uname){
     var scoreBoard = document.getElementById("scoreBoard");
     var board = document.getElementById("board");
+	$.ajax({
+		url:"http://nizekai.sinaapp.com/minesweeperscore/getscore",
+		async : false, 
+		success: function(str){
+			data=str;
+			}
+			}
+		
+	);
+	scoreBoardTable="<table id = 'scoretable'><tr style=\"font-size:20px;font-weight:bold;line-height:30px\"><td>名字</td><td>分数</td><td>排名</td></tr>"
+	scoreTable="";
+	n_f=false;
+	for(var i=0;i<20;i++){
+		name = data[i]?data[i]["name"]:"-";
+		score=data[i]?data[i]["score"].substr(3,5):"-"
+		l=data[i]?i+1:"-";
+		adt="";
+		if(uname && uname==name) {adt=" style='color:red' ";n_f=true;}
+		scoreTable+="<tr"+adt+"><td>"+name+"</td><td>"+score+"</td><td>"+l+"</td><tr>";
+	}
+	if(!n_f){
+		var find=19;
+		while(uname && data[++find] && data[find].name!=uname){}
+		if(data[find] && find>19) {
+			scoreBoardTable+="<tr style='color:red'><td>"+data[find].name+"</td>"+"<td>"+data[find].score.substr(3,5)+"</td>"+"<td>"+(++find)+"</td><tr>";
+			score=data[find].score.substr(3,5);
+			l=find;
+		}
+	}
+	scoreBoardTable+=scoreTable+"</talbe>";
 
     if (!game){
         scoreBoard.innerHTML = scoreBoardTable;
+		
         scoreBoard.style.display = "block";
         board.style.display = "none";
+		hideMessage();
         return;
     }
     if (run)
@@ -449,39 +468,24 @@ function showScoreBoard(){
     scoreBoard.innerHTML = scoreBoardTable;
     scoreBoard.style.display = "block";
     board.style.display = "none";
+	hideMessage();
 }
 
 function setRun(value){
     if (!game) return;
     var board = document.getElementById("board");
-    var pauseScreen = document.getElementById("pauseScreen");
+
     var scoreBoard = document.getElementById("scoreBoard");
 
     run = value;
     if (value){
         timerId = setInterval(timer ,1000);
         board.style.display = "block";
-        pauseScreen.style.display = "none";
-        document.getElementById("pauseGameImg").src = "images/pause1.png";
-        document.getElementById("pauseGameImg").onmouseover = function () {this.src = "images/pause2.png";};
-        document.getElementById("pauseGameImg").onmouseout = function () {this.src = "images/pause1.png";};
         scoreBoard.style.display = "none";
         hideMessage();
     }else{
         clearInterval(timerId);
-
-        pauseScreen.style.width = board.clientWidth;
-        pauseScreen.style.Height = board.clientHeight;
-        pauseScreen.style.backgroundColor = "#c3d9ff";
-
-        pauseScreen.innerHTML = "<h3 style ='background-color: #c3d9ff;display:inline'> Game Paused </h3>";
-
         board.style.display = "none";
-        pauseScreen.style.display = "inline";
-
-        document.getElementById("pauseGameImg").src = "images/play1.png";
-        document.getElementById("pauseGameImg").onmouseover = function () {this.src = "images/play2.png";};
-        document.getElementById("pauseGameImg").onmouseout = function () {this.src = "images/play1.png";};
     }
 }
 
