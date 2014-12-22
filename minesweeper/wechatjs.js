@@ -1,6 +1,6 @@
 
 var con = "船海杯扫雷"; //标题
-var imgurl = "http://img1.imgtn.bdimg.com/it/u=3718146321,775289870&fm=21&gp=0.jpg"; //图片
+var imgurl = "http://ico.ooopic.com/ajax/iconpng/?id=124090.png"; //图片
 var tit = "一起来玩扫雷~"; //简介
 var link = window.location.href; //链接
 
@@ -35,7 +35,7 @@ function sendMessage(title){
 
 
 if(document.addEventListener){
-	document.addEventListener('WeixinJSBridgeReady', sendMessage, false);  
+	document.addEventListener('WeixinJSBridgeReady', function(){sendMessage()}, false);  
 }else if(document.attachEvent){
 	document.attachEvent('WeixinJSBridgeReady'   , function(){sendMessage()});	
 	document.attachEvent('onWeixinJSBridgeReady' , function(){sendMessage()});  
